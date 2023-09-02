@@ -1,17 +1,26 @@
 cmake_minimum_required(VERSION 3.10)
 project(GameOfLife)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(SFML 2.5 COMPONENTS system window graphics REQUIRED)
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 
-if (WIN32)
-    set(EXECUTABLE_SUFFIX ".exe")
+if(APPLE OR UNIX)
+    SET(PLATFORM_SPECIFIC_LIBS "-lpthread")
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -pthread")
+
+    include_directories(/usr/local/include)
+else()
+    set(SFML_DIR "C:/Libraries/SFML/lib/cmake/SFML")
+    set(SFML_STATIC_LIBRARIES TRUE)
 endif()
 
-add_executable(GameOfLife src/main.cpp)
+find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
 
-target_link_libraries(GameOfLife PRIVATE sfml-system sfml-window sfml-graphics)
+if (SFML_FOUND)
+    include_directories(${SFML_INCLUDE_DIR})
+    target_link_libraries(FPSOnline sfml-graphics sfml-window sfml-system)
+endif()
