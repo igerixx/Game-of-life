@@ -22,5 +22,5 @@ find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
 
 if (SFML_FOUND)
     include_directories(${SFML_INCLUDE_DIR})
-    target_link_libraries(FPSOnline sfml-graphics sfml-window sfml-system)
+    target_link_libraries(GameOfLife sfml-graphics sfml-window sfml-system)
 endif()
