@@ -23,5 +23,5 @@ cd build
 
 cmake ..
 make
-./GameOfLife 
+bin/GameOfLife 
 ```
