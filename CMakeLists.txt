@@ -4,6 +4,13 @@ project(GameOfLife)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+cmake_minimum_required(VERSION 3.1)
+project(GameOfLifeSFML)
+
+add_executable(GameOfLife src/main.cpp)
+
+target_link_libraries(GameOfLife sfml-graphics)
+
 find_package(SFML 2.5 COMPONENTS system window graphics REQUIRED)
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
